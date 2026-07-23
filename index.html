@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="leouoq.github.io" lang="">
+<html class="leouoq.github.io" lang="zh-CN">
 <head class="leouoq.github.io">
 	<meta charset="utf-8">
 	<meta content="IE=edge" http-equiv="X-UA-Compatible">
@@ -8,8 +8,255 @@
 	<meta content="我叫LeoLee。" name="description">
 	<meta content="LeoLee,LeoLee主页" name="keywords">
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
-	<link href="./static/css/style.css" rel="stylesheet">
-	<link href="./static/css/root.css" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+	<style>
+		:root{
+			--ink:#0c0a14;
+			--panel:#15121f;
+			--panel-hi:#1c1829;
+			--line:#2a2438;
+			--violet:#8b7cf6;
+			--violet-soft:#6e63c4;
+			--cyan:#5eead4;
+			--paper:#f2eefb;
+			--muted:#9b93b3;
+			--radius:16px;
+			--display: "Space Grotesk", "Noto Sans SC", sans-serif;
+			--body: "Noto Sans SC", "Space Grotesk", sans-serif;
+			--mono: "JetBrains Mono", monospace;
+		}
+
+		*{box-sizing:border-box;}
+		html,body{margin:0;padding:0;}
+		body{
+			background:
+				radial-gradient(60vw 60vw at 8% -10%, rgba(139,124,246,.16), transparent 60%),
+				radial-gradient(50vw 50vw at 105% 15%, rgba(94,234,212,.10), transparent 55%),
+				var(--ink);
+			color:var(--paper);
+			font-family:var(--body);
+			-webkit-font-smoothing:antialiased;
+			min-height:100vh;
+		}
+
+		a{color:inherit;text-decoration:none;}
+		ul{list-style:none;margin:0;padding:0;}
+
+		::selection{background:var(--violet);color:#0c0a14;}
+
+		/* loading + filter (kept for JS hook compatibility) */
+		#zyyo-loading{position:fixed;inset:0;z-index:9999;background:var(--ink);display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:0;transition:opacity .4s ease;}
+		#zyyo-loading-center{width:36px;height:36px;border-radius:50%;border:2px solid var(--line);border-top-color:var(--violet);}
+		.zyyo-filter{position:fixed;inset:0;z-index:1;pointer-events:none;}
+
+		.zyyo-main{
+			max-width:1180px;
+			margin:0 auto;
+			padding:56px 28px 40px;
+			display:grid;
+			grid-template-columns:300px 1fr;
+			gap:32px;
+			align-items:start;
+		}
+
+		/* ---------- Sidebar ---------- */
+		.zyyo-left{
+			position:sticky;
+			top:56px;
+			background:linear-gradient(180deg, var(--panel), var(--panel-hi));
+			border:1px solid var(--line);
+			border-radius:var(--radius);
+			padding:28px 24px 24px;
+		}
+
+		.logo{
+			width:96px;height:96px;border-radius:50%;
+			background-size:cover;background-position:center;
+			position:relative;margin:0 auto 18px;
+			border:1px solid var(--line);
+			box-shadow:0 0 0 6px rgba(139,124,246,.08);
+		}
+
+		.left-div{margin-top:20px;}
+		.left-des{display:flex;flex-direction:column;gap:10px;}
+		.left-des-item{
+			display:flex;align-items:center;gap:10px;
+			font-size:13px;color:var(--muted);
+			font-family:var(--mono);
+		}
+		.left-des-item .icon{width:15px;height:15px;fill:var(--violet);flex:none;}
+
+		.left-tag{display:flex;flex-wrap:wrap;gap:8px;padding-top:18px;border-top:1px dashed var(--line);}
+		.left-tag-item{
+			font-size:12px;color:var(--paper);
+			padding:5px 12px;border-radius:999px;
+			background:rgba(139,124,246,.10);
+			border:1px solid rgba(139,124,246,.28);
+			transition:transform .15s ease, background .15s ease;
+		}
+		.left-tag-item:hover{background:rgba(139,124,246,.22);transform:translateY(-1px);}
+
+		.left-time{padding-top:20px;border-top:1px dashed var(--line);}
+		#line{position:relative;margin-left:6px;padding-left:20px;border-left:1px solid var(--line);}
+		#line li{position:relative;padding-bottom:20px;}
+		#line li:last-child{padding-bottom:0;}
+		#line .focus{
+			position:absolute;left:-25px;top:3px;
+			width:9px;height:9px;border-radius:50%;
+			background:var(--panel);border:2px solid var(--violet-soft);
+		}
+		#line li:first-child .focus{background:var(--cyan);border-color:var(--cyan);box-shadow:0 0 0 4px rgba(94,234,212,.15);}
+		#line li div:nth-child(2){font-size:13.5px;color:var(--paper);line-height:1.5;}
+		#line li div:nth-child(3){font-size:11.5px;color:var(--muted);font-family:var(--mono);margin-top:2px;}
+		#line a{color:var(--cyan);border-bottom:1px solid rgba(94,234,212,.4);}
+
+		/* ---------- Main column ---------- */
+		.zyyo-right{min-width:0;}
+
+		header{
+			background:linear-gradient(160deg, var(--panel), var(--panel-hi));
+			border:1px solid var(--line);
+			border-radius:var(--radius);
+			padding:36px 32px;
+			position:relative;
+			overflow:hidden;
+		}
+		header::after{
+			content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;
+			background:radial-gradient(closest-side, rgba(139,124,246,.28), transparent);
+			pointer-events:none;
+		}
+
+		.index-logo{
+			width:52px;height:52px;border-radius:14px;
+			background-size:cover;background-position:center;
+			position:relative;margin-bottom:18px;
+			border:1px solid var(--line);
+		}
+
+		.welcome{
+			font-family:var(--display);
+			font-size:clamp(28px,3.4vw,40px);
+			font-weight:600;
+			letter-spacing:-.01em;
+			margin-bottom:14px;
+		}
+		.gradientText{
+			background:linear-gradient(90deg, var(--violet), var(--cyan));
+			-webkit-background-clip:text;background-clip:text;color:transparent;
+			font-weight:700;
+		}
+
+		.description{
+			font-size:15px;line-height:1.9;color:var(--muted);
+			max-width:60ch;
+		}
+		.purpleText{color:var(--violet);font-weight:500;}
+		.textBackground{
+			background:rgba(139,124,246,.12);
+			padding:1px 6px;border-radius:6px;
+		}
+
+		.iconContainer{display:flex;align-items:center;gap:12px;margin-top:24px;}
+		.iconItem{
+			position:relative;
+			width:40px;height:40px;border-radius:10px;
+			display:flex;align-items:center;justify-content:center;
+			background:var(--panel-hi);border:1px solid var(--line);
+			transition:border-color .15s ease, transform .15s ease;
+		}
+		.iconItem .icon{width:18px;height:18px;fill:var(--paper);opacity:.85;}
+		.iconItem:hover{border-color:var(--violet-soft);transform:translateY(-2px);}
+		.iconTip{
+			position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);
+			font-size:11px;color:var(--muted);font-family:var(--mono);
+			opacity:0;transition:opacity .15s ease;white-space:nowrap;pointer-events:none;
+		}
+		.iconItem:hover .iconTip{opacity:1;}
+
+		.switch{margin-left:auto;}
+		.onoffswitch{width:44px;height:24px;position:relative;}
+		.onoffswitch-checkbox{display:none;}
+		.onoffswitch-label{
+			display:block;width:100%;height:100%;border-radius:999px;
+			background:var(--panel-hi);border:1px solid var(--line);cursor:pointer;position:relative;
+		}
+		.onoffswitch-switch{
+			position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;
+			background:var(--violet);transition:left .18s ease;
+		}
+		.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch{left:22px;background:var(--cyan);}
+
+		.tanChiShe{position:absolute;right:24px;bottom:16px;opacity:.5;width:60px;}
+		.tanChiShe img{width:100%;display:block;filter:invert(1) opacity(.6);}
+
+		/* ---------- Content sections ---------- */
+		content{display:block;margin-top:28px;}
+
+		.title{
+			display:flex;align-items:center;gap:8px;
+			font-family:var(--mono);
+			font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+			color:var(--muted);
+			margin:32px 0 14px;
+		}
+		.title:first-child{margin-top:0;}
+		.title .icon{width:14px;height:14px;fill:var(--violet);}
+
+		.projectList, .skill{display:flex;flex-direction:column;gap:10px;}
+
+		.projectItem{
+			display:flex;align-items:center;justify-content:space-between;gap:16px;
+			background:var(--panel);
+			border:1px solid var(--line);
+			border-radius:12px;
+			padding:16px 20px;
+			transition:border-color .15s ease, background .15s ease, transform .15s ease;
+		}
+		.projectItem:hover{
+			border-color:var(--violet-soft);
+			background:var(--panel-hi);
+			transform:translateX(3px);
+		}
+		.projectItemLeft h1{
+			font-family:var(--display);
+			font-size:16px;font-weight:600;margin:0 0 4px;color:var(--paper);
+		}
+		.projectItemLeft p{
+			font-family:var(--mono);
+			font-size:12.5px;color:var(--muted);margin:0;
+		}
+		.projectItemRight{flex:none;width:34px;height:34px;border-radius:9px;overflow:hidden;border:1px solid var(--line);}
+		.projectItemRight img{width:100%;height:100%;object-fit:cover;display:block;}
+
+		footer{
+			max-width:1180px;margin:12px auto 40px;padding:0 28px;
+			font-family:var(--mono);font-size:12px;color:var(--muted);
+			text-align:center;
+		}
+		footer a{color:var(--violet);}
+
+		.tc{
+			position:fixed;inset:0;z-index:998;
+			background:rgba(8,7,13,.86);
+			display:none;align-items:center;justify-content:center;
+		}
+		.tc-main{max-width:88vw;max-height:88vh;}
+		.tc-img{max-width:100%;max-height:88vh;border-radius:12px;display:block;}
+
+		@media (max-width:860px){
+			.zyyo-main{grid-template-columns:1fr;padding:32px 18px;}
+			.zyyo-left{position:static;}
+			header{padding:26px 22px;}
+			.tanChiShe{display:none;}
+		}
+
+		@media (prefers-reduced-motion:reduce){
+			*{transition:none !important;}
+		}
+	</style>
 </head>
 
 <body>
@@ -120,7 +367,7 @@
 
 			<content>
 				<div class="title"><svg class="icon" p-id="1891" t="1705257422086" version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" >
-                        <path d="M629.333333 202.666667v213.333333h277.333334v448h-512v-213.333333h-277.333334v-448h512z m213.333334 277.333333h-213.333334v170.666667h-170.666666v149.333333h384v-320z m-277.333334-213.333333h-384v320h213.333334v-170.666667h170.666666v-149.333333z m0 213.333333h-106.666666v106.666667h106.666666v-106.666667z"  p-id="1892"></path>
+                        <path d="M629.333333 202.666667v213.333333h277.333334v448h-512v-213.333333h-277.333334v-448h512z m213.333334 277.333333h-213.333334v170.666667h-170.666666v149.333333h384v-320z m-277.333334-213.333333h-384v320h213.333334v-170.666667h170.666666v-149.333333h-170.666666v-149.333333z m0 213.333333h-106.666666v106.666667h106.666666v-106.666667z"  p-id="1892"></path>
                     </svg>
 					站点
 				</div>
