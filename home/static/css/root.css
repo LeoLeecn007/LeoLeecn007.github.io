@@ -1,0 +1,44 @@
+/*
+--main_bg_color   主页背景
+--main_text_color 文本颜色
+--gradient        标题渐变颜色
+--purple_text_color 描述紫色文本颜色
+--text_bg_color   描述紫色文本背景颜色
+--item_bg_color   项目背景颜色
+--item_hover_color 项目鼠标移入颜色
+--item_left_title_color 项目标题颜色
+--item_left_text_color  项目描述颜色
+--footer_text_color 底部文本颜色
+--left_tag_item   左侧标签颜色
+--card_filter     卡片模糊的数值
+--back_filter     背景模糊的数值
+--back_filter_color 全局阴影遮罩
+--fill            svg图标颜色
+*/
+
+/*
+默认（Light）主题。
+原文件里堆了 5 套用同一个 html{} 选择器写的"主题"，
+CSS 层叠下只有最后一套会生效，其余 4 套其实从未真正显示过，
+这里把唯一生效的这一套整理成一套完整、有意识设计的浅色方案，
+变量名和用途完全不变，theme.js 的开关逻辑不用改。
+*/
+:root {
+    --main_bg_color: radial-gradient(120% 140% at 12% -10%, #efe9ff 0%, transparent 55%),
+                      radial-gradient(100% 120% at 100% 0%, #e6fbf6 0%, transparent 50%),
+                      #faf9ff;
+    --main_text_color: #211d2e;
+    --gradient: linear-gradient(120deg, #7c5cff 0%, #ff6fae 50%, #34c9c8 100%);
+    --purple_text_color: #6a4ff0;
+    --text_bg_color: rgba(124, 92, 255, 0.12);
+    --item_bg_color: rgba(255, 255, 255, 0.62);
+    --item_hover_color: rgba(255, 255, 255, 0.92);
+    --item_left_title_color: #1d1a2b;
+    --item_left_text_color: #6c6580;
+    --footer_text_color: #8c86a0;
+    --left_tag_item: rgba(124, 92, 255, 0.10);
+    --card_filter: 18px;
+    --back_filter: 0px;
+    --back_filter_color: rgba(0, 0, 0, 0);
+    --fill: #4b3f78;
+}
