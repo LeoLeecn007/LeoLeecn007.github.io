@@ -1,5 +1,5 @@
 ## LeoLee的简单个人主页
 
-地址：https://leoleecn007.github.io/
+地址：https://l.iee.li
 
-源码参考自：https://github.com/ZYYO666/homepage
+原作者地址：https://github.com/ZYYO666/homepage
